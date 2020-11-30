@@ -45,9 +45,13 @@ start_h = datetime.now()
 stop_h = datetime.now()
 
 
+model1500args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1, -1]}}
+
 model1000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}
 
 model500args = {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}
+
+modelconfigs = [model500args, model1000args, model1500args]
 
 modelargs = {}
 
@@ -269,7 +273,9 @@ def cli_main():
 
     parser = options.get_training_parser()
     parser.add_argument('--train-subtransformer', action='store_true', default=False, help='whether train SuperTransformer or SubTransformer')
-    parser.add_argument('--sub-configs', required=False, is_config_file=True, help='when training SubTransformer, use --configs to specify architecture and --sub-configs to specify other settings')
+
+    #set default common config file to common.yml
+    parser.add_argument('--sub-configs', required=False, default = 'configs/wmt14.en-de/subtransformer/common.yml', is_config_file=True, help='when training SubTransformer, use --configs to specify architecture and --sub-configs to specify other settings')
 
     # for profiling
     parser.add_argument('--profile-flops', action='store_true', help='measure the FLOPs of a SubTransformer')
@@ -287,7 +293,10 @@ def cli_main():
 
     #############
     args.latiter = 1
-    print(f"| HERE: {args}")
+    #default config file - 1000ms latency constraint
+    args.configs = 'configs/wmt14.en-de/subtransformer/wmt14ende_jetson@1000ms.yml'
+
+    #print(f"| HERE: {args}")
 
     if args.latcpu:
         args.cpu = True
