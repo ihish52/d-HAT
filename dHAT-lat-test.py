@@ -126,7 +126,7 @@ def main(args, init_distributed=False):
 
     
     while (1):
-        lat = input('Enter model latency [choices -> 500, 1000, 1500]: ')
+        lat = input('\nEnter model latency [choices -> 500, 1000, 1500]: ')
         modelargs = modelconfigs[lat]
     # Measure model latency, the program will exit after profiling latency
         if args.latcpu or args.latgpu:
