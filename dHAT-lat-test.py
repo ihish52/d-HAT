@@ -40,6 +40,7 @@ from fairseq.meters import AverageMeter, StopwatchMeter
 from copy import deepcopy
 
 from datetime import datetime
+from time import time
 
 start_h = datetime.now()
 stop_h = datetime.now()
@@ -51,7 +52,12 @@ model1000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, '
 
 model500args = {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}
 
-modelconfigs = [model500args, model1000args, model1500args]
+build_start = time()
+build_end = time()
+sample_start = time()
+sample_end = time()
+
+modelconfigs = {500:model500args, 1000:model1000args, 1500:model1500args}
 
 modelargs = {}
 
@@ -111,21 +117,13 @@ def main(args, init_distributed=False):
     
 
 ###################################
-    
-    #print(f"| **Time to set up model: {(stop_h - start_h).total_seconds()}**\n\n")
+    build_end = time()
+    print(f"\n\n| **Time to build model from SuperT weights: {build_end - build_start}**\n\n")
 ##################################
     
-    modelargs = model1000args
+    modelargs = modelconfigs[1000]
 
     
-
-    # Measure model latency, the program will exit after profiling latency
-    if args.latcpu or args.latgpu:
-        for dhat in range(0, 1):
-            measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs)
-        #exit(0)
-
-    modelargs = model500args
 
     # Measure model latency, the program will exit after profiling latency
     if args.latcpu or args.latgpu:
@@ -144,7 +142,7 @@ def measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs):
     # latency measurement
     assert not (args.latcpu and args.latgpu)
 
-    start_h = datetime.now()
+    sample_start = time()
     model.set_sample_config(modelargs)
     #print(modelargs)
 
@@ -152,8 +150,8 @@ def measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs):
     src_lengths_test = torch.tensor([30])
     prev_output_tokens_test_with_beam = torch.tensor([dummy_prev] * args.beam, dtype=torch.long)
 
-    stop_h = datetime.now()
-    print(f"| **Time to set up model: {(stop_h - start_h).total_seconds()}**\n\n")
+    sample_end = time()
+    print(f"\n\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n\n")
 
     if args.latcpu:
         #model_test.cpu()
@@ -268,7 +266,7 @@ def measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs):
 
 def cli_main():
     
-############################
+    build_start = time()
     
 
     parser = options.get_training_parser()
@@ -276,6 +274,9 @@ def cli_main():
 
     #set default common config file to common.yml
     parser.add_argument('--sub-configs', required=False, default = 'configs/wmt14.en-de/subtransformer/common.yml', is_config_file=True, help='when training SubTransformer, use --configs to specify architecture and --sub-configs to specify other settings')
+
+    #set default latency config
+    parser.add_argument('--lat-config', default = '1000', help = 'default config to use from model param dictionary')
 
     # for profiling
     parser.add_argument('--profile-flops', action='store_true', help='measure the FLOPs of a SubTransformer')
