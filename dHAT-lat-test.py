@@ -118,7 +118,7 @@ def main(args, init_distributed=False):
 
 ###################################
     build_end = time()
-    print(f"\n\n| **Time to build {args.lat_config}ms model from SuperT weights: {build_end - build_start}**\n\n")
+    print(f"\n| **Time to build {args.lat_config}ms model from SuperT weights: {build_end - build_start}**\n")
 ##################################
     
     ###setting chosen model config from argument -> default = 1000 ms
@@ -152,7 +152,7 @@ def measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs):
     prev_output_tokens_test_with_beam = torch.tensor([dummy_prev] * args.beam, dtype=torch.long)
 
     sample_end = time()
-    print(f"\n\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n\n")
+    print(f"\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n")
 
     if args.latcpu:
         #model_test.cpu()
