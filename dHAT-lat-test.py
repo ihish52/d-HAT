@@ -57,7 +57,7 @@ build_end = time()
 sample_start = time()
 sample_end = time()
 
-modelconfigs = {500:model500args, 1000:model1000args, 1500:model1500args}
+modelconfigs = {'500':model500args, '1000':model1000args, '1500':model1500args}
 
 modelargs = {}
 
@@ -118,10 +118,11 @@ def main(args, init_distributed=False):
 
 ###################################
     build_end = time()
-    print(f"\n\n| **Time to build model from SuperT weights: {build_end - build_start}**\n\n")
+    print(f"\n\n| **Time to build {args.lat_config}ms model from SuperT weights: {build_end - build_start}**\n\n")
 ##################################
     
-    modelargs = modelconfigs[1000]
+    ###setting chosen model config from argument -> default = 1000 ms
+    modelargs = modelconfigs[args.lat_config]
 
     
 
