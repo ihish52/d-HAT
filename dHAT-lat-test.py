@@ -125,12 +125,14 @@ def main(args, init_distributed=False):
     modelargs = modelconfigs[args.lat_config]
 
     
-
+    while (1):
+        lat = input('Enter model latency [choices -> 500, 1000, 1500]: ')
+        modelargs = modelconfigs[lat]
     # Measure model latency, the program will exit after profiling latency
-    if args.latcpu or args.latgpu:
-        for dhat in range(0, 1):
-            measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs)
-        exit(0)
+        if args.latcpu or args.latgpu:
+            for dhat in range(0, 1):
+                measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs)
+            #exit(0)
 
 
 def distributed_main(i, args, start_rank=0):
