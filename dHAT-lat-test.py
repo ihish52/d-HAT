@@ -39,12 +39,7 @@ from fairseq.trainer import Trainer
 from fairseq.meters import AverageMeter, StopwatchMeter
 from copy import deepcopy
 
-from datetime import datetime
 from time import time
-
-start_h = datetime.now()
-stop_h = datetime.now()
-
 
 model1500args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1, -1]}}
 
@@ -154,7 +149,7 @@ def measure_latency(args, model, dummy_src_tokens, dummy_prev, modelargs):
     prev_output_tokens_test_with_beam = torch.tensor([dummy_prev] * args.beam, dtype=torch.long)
 
     sample_end = time()
-    print(f"\n| **Time to sample {args.lat_config}ms SubT from SuperT design space: {sample_end - sample_start}**\n")
+    print(f"\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n")
 
     if args.latcpu:
         #model_test.cpu()
