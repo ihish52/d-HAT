@@ -49,7 +49,7 @@ model1000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, '
 
 model750args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [4, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}
 
-model500args = {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 3, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}
+model500args = {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}
 
 model350args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}
 
