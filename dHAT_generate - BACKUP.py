@@ -53,28 +53,28 @@ def main(args):
         '--replace-unk requires a raw text dataset (--raw-text)'
 
     utils.import_user_module(args)
-    
+
     if args.max_tokens is None and args.max_sentences is None:
         args.max_tokens = 12000
     print(args)
-    
+
     use_cuda = torch.cuda.is_available() and not args.cpu
     
     # when running on CPU, use fp32 as default
     if not use_cuda:
         args.fp16 = False
-    
+
     # Load dataset splits
     task = tasks.setup_task(args)
     task.load_dataset(args.gen_subset)
-    
+
     # Set dictionaries
     try:
         src_dict = getattr(task, 'source_dictionary', None)
     except NotImplementedError:
         src_dict = None
     tgt_dict = task.target_dictionary
-    
+
     # Load ensemble
     print('| loading model(s) from {}'.format(args.path))
     models, _model_args = checkpoint_utils.load_model_ensemble(
@@ -82,162 +82,156 @@ def main(args):
         arg_overrides=eval(args.model_overrides),
         task=task,
     )
-    
+
     torch.manual_seed(args.seed)
-    
-    while True:
-    
-        print(f"\nEnter model latency [choices -> 350, 500, 750, 1000, 1250, 1500 (ms)]: ", file = sys.stderr)
-        lat = input()
-        modelargs = modelconfigs[lat]
 
-        # Optimize ensemble for generation
-        for model in models:
-            if use_cuda:
-                model.cuda()
 
-            config = utils.get_subtransformer_config(args)
-            
-            
-            ####################################
-            
-            build_end = time()
-            #print(f"\n| **Time to set up: {build_end - build_start}**\n", file=sys.stderr)
 
-    ############################edited###########################
+    # Optimize ensemble for generation
+    for model in models:
+        if use_cuda:
+            model.cuda()
+
+        config = utils.get_subtransformer_config(args)
         
-            sample_start = time()
-            
-            model.set_sample_config(modelargs)
-            
-            sample_end = time()
-            
-            print(f"| Latency: {lat} ms", file = sys.stderr)
-            
-            print(f"\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n", file=sys.stderr)
-            
-            #print(f"| Configs: {args}", file = sys.stderr)
-            
-            
-            ##################################edited####################################
-            
-            model.make_generation_fast_(
-                beamable_mm_beam_size=None if args.no_beamable_mm else args.beam,
-                need_attn=args.print_alignment,
-            )
-            if args.fp16:
-                model.half()
-            if use_cuda:
-                model.cuda()
-            #print(model, file=sys.stderr)
-            print(args.path, file=sys.stderr)
+        
+        ####################################
+        build_end = time()
+        print(f"\n| **Time to set up: {build_end - build_start}**\n", file=sys.stderr)
 
-        # Load alignment dictionary for unknown word replacement
-        # (None if no unknown word replacement, empty if no path to align dictionary)
-        align_dict = utils.load_align_dict(args.replace_unk)
+############################edited###########################
+        sample_start = time()
+        
+        model.set_sample_config(modelconfigs[args.lat_config])
+        
+        sample_end = time()
+        
+        print(f"| Latency: {args.lat_config} ms", file = sys.stderr)
+        
+        print(f"\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n", file=sys.stderr)
+        
+        #print(f"| Configs: {args}", file = sys.stderr)
+        
+        
+        ##################################edited####################################
+        
+        model.make_generation_fast_(
+            beamable_mm_beam_size=None if args.no_beamable_mm else args.beam,
+            need_attn=args.print_alignment,
+        )
+        if args.fp16:
+            model.half()
+        if use_cuda:
+            model.cuda()
+        print(model, file=sys.stderr)
+        print(args.path, file=sys.stderr)
 
-        # Load dataset (possibly sharded)
-        itr = task.get_batch_iterator(
-            dataset=task.dataset(args.gen_subset),
-            max_tokens=args.max_tokens,
-            max_sentences=args.max_sentences,
-            max_positions=utils.resolve_max_positions(
-                task.max_positions(),
-                *[model.max_positions() for model in models]
-            ),
-            ignore_invalid_inputs=args.skip_invalid_size_inputs_valid_test,
-            required_batch_size_multiple=args.required_batch_size_multiple,
-            num_shards=args.num_shards,
-            shard_id=args.shard_id,
-            num_workers=args.num_workers,
-        ).next_epoch_itr(shuffle=False)
+    # Load alignment dictionary for unknown word replacement
+    # (None if no unknown word replacement, empty if no path to align dictionary)
+    align_dict = utils.load_align_dict(args.replace_unk)
 
-        # Initialize generator
-        gen_timer = StopwatchMeter()
-        generator = task.build_generator(args)
+    # Load dataset (possibly sharded)
+    itr = task.get_batch_iterator(
+        dataset=task.dataset(args.gen_subset),
+        max_tokens=args.max_tokens,
+        max_sentences=args.max_sentences,
+        max_positions=utils.resolve_max_positions(
+            task.max_positions(),
+            *[model.max_positions() for model in models]
+        ),
+        ignore_invalid_inputs=args.skip_invalid_size_inputs_valid_test,
+        required_batch_size_multiple=args.required_batch_size_multiple,
+        num_shards=args.num_shards,
+        shard_id=args.shard_id,
+        num_workers=args.num_workers,
+    ).next_epoch_itr(shuffle=False)
 
-        num_sentences = 0
-        has_target = True
-        decoder_times_all = []
-        input_len_all = []
-        with progress_bar.build_progress_bar(args, itr) as t:
-            wps_meter = TimeMeter()
-            for sample in t:
+    # Initialize generator
+    gen_timer = StopwatchMeter()
+    generator = task.build_generator(args)
 
-                sample = utils.move_to_cuda(sample) if use_cuda else sample
-                if 'net_input' not in sample:
-                    continue
+    num_sentences = 0
+    has_target = True
+    decoder_times_all = []
+    input_len_all = []
+    with progress_bar.build_progress_bar(args, itr) as t:
+        wps_meter = TimeMeter()
+        for sample in t:
 
-                prefix_tokens = None
-                if args.prefix_size > 0:
-                    prefix_tokens = sample['target'][:, :args.prefix_size]
+            sample = utils.move_to_cuda(sample) if use_cuda else sample
+            if 'net_input' not in sample:
+                continue
 
-                gen_timer.start()
-                hypos, decoder_times = task.inference_step(generator, models, sample, prefix_tokens)
-                input_len_all.append(np.mean(sample['net_input']['src_lengths'].cpu().numpy()))
+            prefix_tokens = None
+            if args.prefix_size > 0:
+                prefix_tokens = sample['target'][:, :args.prefix_size]
 
-                print(decoder_times)
-                decoder_times_all.append(decoder_times)
-                num_generated_tokens = sum(len(h[0]['tokens']) for h in hypos)
-                gen_timer.stop(num_generated_tokens)
+            gen_timer.start()
+            hypos, decoder_times = task.inference_step(generator, models, sample, prefix_tokens)
+            input_len_all.append(np.mean(sample['net_input']['src_lengths'].cpu().numpy()))
 
-                for i, sample_id in enumerate(sample['id'].tolist()):
-                    has_target = sample['target'] is not None
+            print(decoder_times)
+            decoder_times_all.append(decoder_times)
+            num_generated_tokens = sum(len(h[0]['tokens']) for h in hypos)
+            gen_timer.stop(num_generated_tokens)
 
-                    # Remove padding
-                    src_tokens = utils.strip_pad(sample['net_input']['src_tokens'][i, :], tgt_dict.pad())
-                    target_tokens = None
-                    if has_target:
-                        target_tokens = utils.strip_pad(sample['target'][i, :], tgt_dict.pad()).int().cpu()
+            for i, sample_id in enumerate(sample['id'].tolist()):
+                has_target = sample['target'] is not None
 
-                    # Either retrieve the original sentences or regenerate them from tokens.
-                    if align_dict is not None:
-                        src_str = task.dataset(args.gen_subset).src.get_original_text(sample_id)
-                        target_str = task.dataset(args.gen_subset).tgt.get_original_text(sample_id)
+                # Remove padding
+                src_tokens = utils.strip_pad(sample['net_input']['src_tokens'][i, :], tgt_dict.pad())
+                target_tokens = None
+                if has_target:
+                    target_tokens = utils.strip_pad(sample['target'][i, :], tgt_dict.pad()).int().cpu()
+
+                # Either retrieve the original sentences or regenerate them from tokens.
+                if align_dict is not None:
+                    src_str = task.dataset(args.gen_subset).src.get_original_text(sample_id)
+                    target_str = task.dataset(args.gen_subset).tgt.get_original_text(sample_id)
+                else:
+                    if src_dict is not None:
+                        src_str = src_dict.string(src_tokens, args.remove_bpe)
                     else:
-                        if src_dict is not None:
-                            src_str = src_dict.string(src_tokens, args.remove_bpe)
-                        else:
-                            src_str = ""
-                        if has_target:
-                            target_str = tgt_dict.string(target_tokens, args.remove_bpe, escape_unk=True)
+                        src_str = ""
+                    if has_target:
+                        target_str = tgt_dict.string(target_tokens, args.remove_bpe, escape_unk=True)
+
+                if not args.quiet:
+                    if src_dict is not None:
+                        print('S-{}\t{}'.format(sample_id, src_str))
+                    if has_target:
+                        print('T-{}\t{}'.format(sample_id, target_str))
+
+                # Process top predictions
+                for j, hypo in enumerate(hypos[i][:args.nbest]):
+                    hypo_tokens, hypo_str, alignment = utils.post_process_prediction(
+                        hypo_tokens=hypo['tokens'].int().cpu(),
+                        src_str=src_str,
+                        alignment=hypo['alignment'].int().cpu() if hypo['alignment'] is not None else None,
+                        align_dict=align_dict,
+                        tgt_dict=tgt_dict,
+                        remove_bpe=args.remove_bpe,
+                    )
 
                     if not args.quiet:
-                        if src_dict is not None:
-                            print('S-{}\t{}'.format(sample_id, src_str))
-                        if has_target:
-                            print('T-{}\t{}'.format(sample_id, target_str))
+                        print('H-{}\t{}\t{}'.format(sample_id, hypo['score'], hypo_str))
+                        print('P-{}\t{}'.format(
+                            sample_id,
+                            ' '.join(map(
+                                lambda x: '{:.4f}'.format(x),
+                                hypo['positional_scores'].tolist(),
+                            ))
+                        ))
 
-                    # Process top predictions
-                    for j, hypo in enumerate(hypos[i][:args.nbest]):
-                        hypo_tokens, hypo_str, alignment = utils.post_process_prediction(
-                            hypo_tokens=hypo['tokens'].int().cpu(),
-                            src_str=src_str,
-                            alignment=hypo['alignment'].int().cpu() if hypo['alignment'] is not None else None,
-                            align_dict=align_dict,
-                            tgt_dict=tgt_dict,
-                            remove_bpe=args.remove_bpe,
-                        )
-
-                        if not args.quiet:
-                            print('H-{}\t{}\t{}'.format(sample_id, hypo['score'], hypo_str))
-                            print('P-{}\t{}'.format(
+                        if args.print_alignment:
+                            print('A-{}\t{}'.format(
                                 sample_id,
-                                ' '.join(map(
-                                    lambda x: '{:.4f}'.format(x),
-                                    hypo['positional_scores'].tolist(),
-                                ))
+                                ' '.join(map(lambda x: str(utils.item(x)), alignment))
                             ))
 
-                            if args.print_alignment:
-                                print('A-{}\t{}'.format(
-                                    sample_id,
-                                    ' '.join(map(lambda x: str(utils.item(x)), alignment))
-                                ))
-
-                wps_meter.update(num_generated_tokens)
-                t.log({'wps': round(wps_meter.avg)})
-                num_sentences += sample['nsentences']
+            wps_meter.update(num_generated_tokens)
+            t.log({'wps': round(wps_meter.avg)})
+            num_sentences += sample['nsentences']
 
 
 def cli_main():
