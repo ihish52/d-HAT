@@ -43,6 +43,7 @@ modelargs = {}
 def main(args):
 
 
+
     assert args.path is not None, '--path required for generation!'
     assert not args.sampling or args.nbest == args.beam, \
         '--sampling requires --nbest to be equal to --beam'
@@ -60,7 +61,6 @@ def main(args):
     # when running on CPU, use fp32 as default
     if not use_cuda:
         args.fp16 = False
-
 
     # Load dataset splits
     task = tasks.setup_task(args)
@@ -85,6 +85,7 @@ def main(args):
 
     torch.manual_seed(args.seed)
 
+
     # Optimize ensemble for generation
     for model in models:
         if use_cuda:
@@ -103,7 +104,7 @@ def main(args):
         
         print(f"\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n", file=sys.stderr)
         
-        print(f"| Configs: {args}", file = sys.stderr)
+        #print(f"| Configs: {args}", file = sys.stderr)
         
         
         ##################################edited####################################
@@ -119,10 +120,21 @@ def main(args):
         print(model, file=sys.stderr)
         print(args.path, file=sys.stderr)
 
+
+
+###################################
+    build_start = time()
+    #########################################
+
     # Load alignment dictionary for unknown word replacement
     # (None if no unknown word replacement, empty if no path to align dictionary)
     align_dict = utils.load_align_dict(args.replace_unk)
 
+        ####################################
+    build_end = time()
+    print(f"\n| **Time to set up: {build_end - build_start}**\n", file=sys.stderr)
+
+############################edited###########################
 
     # Load dataset (possibly sharded)
     itr = task.get_batch_iterator(
@@ -139,10 +151,6 @@ def main(args):
         shard_id=args.shard_id,
         num_workers=args.num_workers,
     ).next_epoch_itr(shuffle=False)
-
-###################################
-    build_start = time()
-    #########################################
 
     # Initialize generator
     gen_timer = StopwatchMeter()
@@ -231,12 +239,6 @@ def main(args):
             t.log({'wps': round(wps_meter.avg)})
             num_sentences += sample['nsentences']
 
-
-####################################
-    build_end = time()
-    print(f"\n| **Time to set up: {build_end - build_start}**\n", file=sys.stderr)
-
-############################edited###########################
 
 def cli_main():
     parser = options.get_generation_parser()

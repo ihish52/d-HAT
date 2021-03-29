@@ -165,12 +165,22 @@ def replace_unk(hypo_str, src_str, alignment, align_dict, unk):
 
 def post_process_prediction(hypo_tokens, src_str, alignment, align_dict, tgt_dict, remove_bpe=None):
     hypo_str = tgt_dict.string(hypo_tokens, remove_bpe)
+
     if align_dict is not None:
         hypo_str = replace_unk(hypo_str, src_str, alignment, align_dict, tgt_dict.unk_string())
+        
     if align_dict is not None or remove_bpe is not None:
         # Convert back to tokens for evaluating with unk replacement or without BPE
         # Note that the dictionary can be modified inside the method.
         hypo_tokens = tgt_dict.encode_line(hypo_str, add_if_not_exist=True)
+        ############################
+        with open("debug_task.txt", "a") as dFile2:
+            print ("tgt_dict at the end:", file = dFile2)
+            print (tgt_dict, file = dFile2)
+            print (len(tgt_dict), file = dFile2)
+            print ("\n\n\n", file=dFile2)
+            #tgt_dict_backup = tgt_dict
+        ################################
     return hypo_tokens, hypo_str, alignment
 
 

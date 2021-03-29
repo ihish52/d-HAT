@@ -68,6 +68,12 @@ class SequenceGenerator(object):
         self.unk = tgt_dict.unk()
         self.eos = tgt_dict.eos()
         self.vocab_size = len(tgt_dict)
+
+##################################################33
+
+        self.vocab_size_backup = self.vocab_size
+###################################################
+
         self.beam_size = beam_size
         # the max beam size is the dictionary size - 1, since we never select pad
         self.beam_size = min(beam_size, self.vocab_size - 1)
@@ -114,6 +120,7 @@ class SequenceGenerator(object):
             prefix_tokens (torch.LongTensor, optional): force decoder to begin
                 with these tokens
         """
+
         model = EnsembleModel(models)
         if not self.retain_dropout:
             model.eval()
@@ -280,6 +287,15 @@ class SequenceGenerator(object):
         batch_idxs = None
         decoder_times = 0
         for step in range(max_len + 1):  # one extra step for EOS marker
+
+########################################################
+            with open("debug_task.txt", "a") as dFile2:
+                print ("x step in max_len + 1 looping", file=dFile2)
+                print (step, file=dFile2)
+                print ("num sent:", file=dFile2)
+                print (num_remaining_sent, file=dFile2)
+
+########################################################
             # reorder decoder internal states based on the prev choice of beams
             if reorder_state is not None:
                 if batch_idxs is not None:
@@ -333,6 +349,7 @@ class SequenceGenerator(object):
                     scores = replicate_first_beam(scores, eos_mask_batch_dim)
                     lprobs = replicate_first_beam(lprobs, eos_mask_batch_dim)
 
+
             if self.no_repeat_ngram_size > 0:
                 # for each beam and batch sentence, generate a list of previous ngrams
                 gen_ngrams = [{} for bbsz_idx in range(bsz * beam_size)]
@@ -372,8 +389,24 @@ class SequenceGenerator(object):
                 for bbsz_idx in range(bsz * beam_size):
                     lprobs[bbsz_idx, banned_tokens[bbsz_idx]] = -math.inf
 
+########################################################
+            with open("debug_task.txt", "a") as dFile2:
+                #print ("\n\n\n GLOBAL VARIABLES \n\n\n", file=dFile2)
+                #print (globals(), file = dFile2)
+                #print ("\n\n\n LOCAL VARIABLES \n\n\n", file=dFile2)
+                #print (locals(), file = dFile2)
+                #print ("\n\n\n", file=dFile2)
+                #print ("\n\n\n", file=dFile2)
+                print (lprobs.size(), file=dFile2)
+                print (max_len, file=dFile2)
+                print (bsz, file=dFile2)
+                print (self.vocab_size, file=dFile2)
+                #print (cand output sizes:)
+
+########################################################
+
             cand_scores, cand_indices, cand_beams = self.search.step(
-                step,
+                step,#lprobs.view(-1, self.vocab_size, bsz),
                 lprobs.view(bsz, -1, self.vocab_size),
                 scores.view(bsz, beam_size, -1)[:, :, :step],
             )
@@ -393,6 +426,7 @@ class SequenceGenerator(object):
                 mask=eos_mask[:, :beam_size],
                 out=eos_bbsz_idx,
             )
+
 
             finalized_sents = set()
             if eos_bbsz_idx.numel() > 0:
@@ -514,6 +548,19 @@ class SequenceGenerator(object):
         # sort by score descending
         for sent in range(len(finalized)):
             finalized[sent] = sorted(finalized[sent], key=lambda r: r['score'], reverse=True)
+
+#######################################################
+        del cand_beams
+        del cand_scores
+        del cand_indices
+        del lprobs
+        self.vocab_size = self.vocab_size_backup
+        ########################################################################
+        with open("debug_task.txt", "a") as dFile2:
+            print (self.vocab_size, file=dFile2)
+            #print (len(tgt_dict), file=dFile2)
+###############################################################
+#########################################################
 
         return finalized, decoder_times
         # return finalized
