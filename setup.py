@@ -81,7 +81,6 @@ setup(
         'numpy',
         'regex',
         'sacrebleu',
-        'torch',
         'tqdm',
         'cython',
         'configargparse',

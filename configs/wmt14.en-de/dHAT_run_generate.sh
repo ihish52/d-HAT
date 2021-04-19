@@ -10,7 +10,7 @@ out_name=$(basename -- "$configs")
 
 mkdir -p $output_path/exp
 
-CUDA_VISIBLE_DEVICES=$gpu python -W ignore dHAT_generate_3.py \
+CUDA_VISIBLE_DEVICES=$gpu python3 -W ignore dHAT_generate_3.py \
         --data data/binary/wmt16_en_de  \
         --path "$checkpoints_path" \
         --gen-subset $subset \

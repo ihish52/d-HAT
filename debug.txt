@@ -5,7 +5,7 @@
 
 
 
-{'__name__': '__main__', '__doc__': '\nTranslate pre-processed data with a trained model.\n', '__package__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7ff2bd1da978>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>, '__file__': 'dHAT_generate_3.py', '__cached__': None, 'torch': <module 'torch' from '/home/hmrp1r17/.conda/envs/p3ip2/lib/python3.6/site-packages/torch/__init__.py'>, 'bleu': <module 'fairseq.bleu' from '/home/hmrp1r17/p3ip_2/d-HAT/fairseq/bleu.py'>, 'checkpoint_utils': <module 'fairseq.checkpoint_utils' from '/home/hmrp1r17/p3ip_2/d-HAT/fairseq/checkpoint_utils.py'>, 'options': <module 'fairseq.options' from '/home/hmrp1r17/p3ip_2/d-HAT/fairseq/options.py'>, 'progress_bar': <module 'fairseq.progress_bar' from '/home/hmrp1r17/p3ip_2/d-HAT/fairseq/progress_bar.py'>, 'tasks': <module 'fairseq.tasks' from '/home/hmrp1r17/p3ip_2/d-HAT/fairseq/tasks/__init__.py'>, 'utils': <module 'fairseq.utils' from '/home/hmrp1r17/p3ip_2/d-HAT/fairseq/utils.py'>, 'StopwatchMeter': <class 'fairseq.meters.StopwatchMeter'>, 'TimeMeter': <class 'fairseq.meters.TimeMeter'>, 'sys': <module 'sys' (built-in)>, 'pdb': <module 'pdb' from '/home/hmrp1r17/.conda/envs/p3ip2/lib/python3.6/pdb.py'>, 'np': <module 'numpy' from '/home/hmrp1r17/.conda/envs/p3ip2/lib/python3.6/site-packages/numpy/__init__.py'>, 'time': <built-in function time>, 'model1500args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1, -1]}}, 'model1250args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 5, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [4, 8, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1]}}, 'model1000args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}, 'model750args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [4, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}, 'model500args': {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}, 'model350args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}, 'build_start': 1617022806.7954304, 'build_end': 1617022806.7954314, 'inference_start': 1617022806.7954319, 'inference_end': 1617022806.7954323, 'lat_start': 1617022806.7954328, 'lat_end': 1617022806.7954333, 'modelconfigs': {'350': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}, '500': {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}, '750': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [4, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}, '1000': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}, '1250': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 5, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [4, 8, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1]}}, '1500': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1, -1]}}}, 'modelargs': {}, 'main': <function main at 0x7ff2bd189158>, 'cli_main': <function cli_main at 0x7ff25f598950>}
+{'__name__': '__main__', '__doc__': '\nTranslate pre-processed data with a trained model.\n', '__package__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7fb5a0fa20>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>, '__file__': 'dHAT_generate_3.py', '__cached__': None, 'torch': <module 'torch' from '/home/hmrp1r17/.local/lib/python3.6/site-packages/torch/__init__.py'>, 'bleu': <module 'fairseq.bleu' from '/home/hmrp1r17/p3_final/d-HAT/fairseq/bleu.py'>, 'checkpoint_utils': <module 'fairseq.checkpoint_utils' from '/home/hmrp1r17/p3_final/d-HAT/fairseq/checkpoint_utils.py'>, 'options': <module 'fairseq.options' from '/home/hmrp1r17/p3_final/d-HAT/fairseq/options.py'>, 'progress_bar': <module 'fairseq.progress_bar' from '/home/hmrp1r17/p3_final/d-HAT/fairseq/progress_bar.py'>, 'tasks': <module 'fairseq.tasks' from '/home/hmrp1r17/p3_final/d-HAT/fairseq/tasks/__init__.py'>, 'utils': <module 'fairseq.utils' from '/home/hmrp1r17/p3_final/d-HAT/fairseq/utils.py'>, 'StopwatchMeter': <class 'fairseq.meters.StopwatchMeter'>, 'TimeMeter': <class 'fairseq.meters.TimeMeter'>, 'sys': <module 'sys' (built-in)>, 'pdb': <module 'pdb' from '/usr/lib/python3.6/pdb.py'>, 'np': <module 'numpy' from '/home/hmrp1r17/.local/lib/python3.6/site-packages/numpy/__init__.py'>, 'time': <built-in function time>, 'model2000args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 4, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 4, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, 1, -1]}}, 'model1250args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 5, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [4, 8, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1]}}, 'model1000args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}, 'model900args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 3, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}, 'model700args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [1, 1]}}, 'model350args': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}, 'modelconfigs': {'350': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}, '700': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [1, 1]}}, '900': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 3, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}, '1000': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}, '1250': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 5, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [4, 8, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1]}}, '2000': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 4, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 4, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, 1, -1]}}}, 'modelargs': {}, 'outFile': None, 'main': <function main at 0x7fb59fdd08>, 'cli_main': <function cli_main at 0x7f6b4f7f28>}
 
 
 
@@ -13,7 +13,7 @@
 
 
 
-{'task': <fairseq.tasks.translation.TranslationTask object at 0x7ff255ee0438>, 'use_cuda': True, 'args': Namespace(beam=4, configs='configs/wmt14.en-de/subtransformer/wmt14ende_jetson@1000ms.yml', cpu=False, criterion='cross_entropy', data='data/binary/wmt16_en_de', dataset_impl=None, decoder_arbitrary_ende_attn_all_subtransformer=[1, 1, 1, -1], decoder_embed_dim_subtransformer=512, decoder_ende_attention_heads_all_subtransformer=[8, 8, 8, 8], decoder_ffn_embed_dim_all_subtransformer=[3072, 3072, 3072, 3072], decoder_layer_num_subtransformer=4, decoder_self_attention_heads_all_subtransformer=[8, 8, 8, 4], diverse_beam_groups=-1, diverse_beam_strength=0.5, encoder_embed_dim_subtransformer=512, encoder_ffn_embed_dim_all_subtransformer=[3072, 3072, 3072, 2048, 3072, 3072], encoder_layer_num_subtransformer=6, encoder_self_attention_heads_all_subtransformer=[8, 8, 8, 4, 8, 4], force_anneal=None, fp16=False, fp16_init_scale=128, fp16_scale_tolerance=0.0, fp16_scale_window=None, gen_subset='test', lat_config='1250', lazy_load=False, left_pad_source=False, left_pad_target=False, lenpen=0.6, log_format='tqdm', log_interval=1000, lr_scheduler='fixed', lr_shrink=0.1, match_source_len=False, max_len_a=0, max_len_b=200, max_sentences=128, max_source_positions=1024, max_target_positions=1024, max_tokens=None, memory_efficient_fp16=False, min_len=1, min_loss_scale=0.0001, model_overrides='{}', momentum=0.99, nbest=1, no_beamable_mm=False, no_early_stop=False, no_progress_bar=False, no_repeat_ngram_size=0, num_shards=1, num_workers=10, optimizer='nag', path='./downloaded_models/HAT_wmt14ende_super_space0.pt', pdb=False, prefix_size=0, print_alignment=False, profile_latency=False, quiet=False, raw_text=False, remove_bpe='@@ ', replace_unk=None, required_batch_size_multiple=8, results_path=None, sacrebleu=False, sampling=False, sampling_topk=-1, sampling_topp=-1.0, score_reference=False, seed=1, shard_id=0, skip_invalid_size_inputs_valid_test=False, source_lang='en', target_lang='de', task='translation', tbmf_wrapper=False, temperature=1.0, tensorboard_logdir='', threshold_loss_scale=None, unkpen=0, unnormalized=False, upsample_primary=1, user_dir=None, warmup_updates=0, weight_decay=0.0), 'prefix_tokens': None, 'sample': {'id': tensor([1, 4, 2, 3, 0], device='cuda:0'), 'nsentences': 5, 'ntokens': 107, 'net_input': {'src_tokens': tensor([[  747,    32,    55,   333,   892,  4350,  8796,    43,   671, 16116,
+{'task': <fairseq.tasks.translation.TranslationTask object at 0x7f69cd5278>, 'use_cuda': True, 'build_start': 1618846817.5369763, 'loop_count': 0, 'args': Namespace(beam=4, configs='configs/wmt14.en-de/subtransformer/wmt14ende_jetson@1000ms.yml', cpu=False, criterion='cross_entropy', data='data/binary/wmt16_en_de', dataset_impl=None, decoder_arbitrary_ende_attn_all_subtransformer=[1, 1, 1, -1], decoder_embed_dim_subtransformer=512, decoder_ende_attention_heads_all_subtransformer=[8, 8, 8, 8], decoder_ffn_embed_dim_all_subtransformer=[3072, 3072, 3072, 3072], decoder_layer_num_subtransformer=4, decoder_self_attention_heads_all_subtransformer=[8, 8, 8, 4], diverse_beam_groups=-1, diverse_beam_strength=0.5, encoder_embed_dim_subtransformer=512, encoder_ffn_embed_dim_all_subtransformer=[3072, 3072, 3072, 2048, 3072, 3072], encoder_layer_num_subtransformer=6, encoder_self_attention_heads_all_subtransformer=[8, 8, 8, 4, 8, 4], force_anneal=None, fp16=False, fp16_init_scale=128, fp16_scale_tolerance=0.0, fp16_scale_window=None, gen_subset='test', lat_config='350', lazy_load=False, left_pad_source=False, left_pad_target=False, lenpen=0.6, log_format='tqdm', log_interval=1000, lr_scheduler='fixed', lr_shrink=0.1, match_source_len=False, max_len_a=0, max_len_b=200, max_sentences=128, max_source_positions=1024, max_target_positions=1024, max_tokens=None, memory_efficient_fp16=False, min_len=1, min_loss_scale=0.0001, model_overrides='{}', momentum=0.99, nbest=1, no_beamable_mm=False, no_early_stop=False, no_progress_bar=False, no_repeat_ngram_size=0, num_shards=1, num_workers=10, optimizer='nag', path='./downloaded_models/HAT_wmt14ende_super_space0.pt', pdb=False, prefix_size=0, print_alignment=False, profile_latency=False, quiet=False, raw_text=False, remove_bpe='@@ ', replace_unk=None, required_batch_size_multiple=8, results_path=None, sacrebleu=False, sampling=False, sampling_topk=-1, sampling_topp=-1.0, score_reference=False, seed=1, shard_id=0, skip_invalid_size_inputs_valid_test=False, source_lang='en', target_lang='de', task='translation', tbmf_wrapper=False, temperature=1.0, tensorboard_logdir='', threshold_loss_scale=None, unkpen=0, unnormalized=False, upsample_primary=1, user_dir=None, warmup_updates=0, weight_decay=0.0), 'dFile': <_io.TextIOWrapper name='debug.txt' mode='w' encoding='UTF-8'>, 'prefix_tokens': None, 'sample': {'id': tensor([1, 4, 2, 3, 0], device='cuda:0'), 'nsentences': 5, 'ntokens': 107, 'net_input': {'src_tokens': tensor([[  747,    32,    55,   333,   892,  4350,  8796,    43,   671, 16116,
              4,     6,   146,   941,  5422, 21286, 13741,     7, 24016, 22071,
           2857,     7,  9850,  3830,  2931,  8033,    37,   414,   478,     8,
              6,  2043,  8878,  8228,  3950, 13741,     5,     2],
@@ -81,7 +81,7 @@
              1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
              1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
              1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-             1,     1]], device='cuda:0')}, 'wps_meter': <fairseq.meters.TimeMeter object at 0x7ff255ee0898>, 't': <fairseq.progress_bar.tqdm_progress_bar object at 0x7ff255ee0748>, 'input_len_all': [], 'decoder_times_all': [], 'has_target': True, 'num_sentences': 0, 'generator': <fairseq.sequence_generator.SequenceGenerator object at 0x7ff255ee0668>, 'gen_timer': <fairseq.meters.StopwatchMeter object at 0x7ff224132400>, 'inference_start': 1617023449.3291361, 'build_end': 1617023449.3291354, 'itr': <fairseq.data.iterators.CountingIterator object at 0x7ff255ee02b0>, 'align_dict': None, 'config': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}, 'model': TransformerSuperModel(
+             1,     1]], device='cuda:0')}, 'wps_meter': <fairseq.meters.TimeMeter object at 0x7f37bbf6d8>, 't': <fairseq.progress_bar.tqdm_progress_bar object at 0x7f69cd5ef0>, 'input_len_all': [], 'decoder_times_all': [], 'has_target': True, 'num_sentences': 0, 'generator': <fairseq.sequence_generator.SequenceGenerator object at 0x7f69cd5be0>, 'gen_timer': <fairseq.meters.StopwatchMeter object at 0x7f69cc47f0>, 'inference_start': 1618846852.109805, 'lat_end': 1618846852.1098046, 'itr': <fairseq.data.iterators.CountingIterator object at 0x7f69cd58d0>, 'align_dict': None, 'config': {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}, 'model': TransformerSuperModel(
   (encoder): TransformerEncoder(
     (embed_tokens): EmbeddingSuper(32768, 640, padding_idx=1)
     (embed_positions): SinusoidalPositionalEmbedding()
@@ -105,7 +105,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (2): TransformerEncoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -114,7 +114,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (3): TransformerEncoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -132,7 +132,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (5): TransformerEncoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -147,7 +147,7 @@
     (embed_positions): SinusoidalPositionalEmbedding()
     (layers): ModuleList(
       (0): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -186,7 +186,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (3): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -199,7 +199,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (4): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -212,7 +212,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (5): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -226,7 +226,7 @@
       )
     )
   )
-), 'tgt_dict': <fairseq.data.dictionary.Dictionary object at 0x7ff22412eef0>, 'src_dict': <fairseq.data.dictionary.Dictionary object at 0x7ff256f09f98>, 'dFile2': <_io.TextIOWrapper name='debug_task.txt' mode='a' encoding='UTF-8'>, 'build_start': 1617023449.0151582, 'input_lat': '1250', '_model_args': Namespace(activation_dropout=0.0, activation_fn='relu', adaptive_input=False, adaptive_softmax_cutoff=None, adaptive_softmax_dropout=0, arch='transformersuper', attention_dropout=0.0, decoder_arbitrary_ende_attn_all_subtransformer=None, decoder_arbitrary_ende_attn_choice=[-1, 1, 2], decoder_attention_heads=8, decoder_embed_choice=[512, 256, 128], decoder_embed_dim=640, decoder_embed_dim_subtransformer=None, decoder_embed_path=None, decoder_ende_attention_heads_all_subtransformer=None, decoder_ende_attention_heads_choice=[16, 8, 4, 2, 1], decoder_ffn_embed_dim=3072, decoder_ffn_embed_dim_all_subtransformer=None, decoder_ffn_embed_dim_choice=[4096, 3072, 2048, 1024], decoder_input_dim=640, decoder_layer_num_choice=[7, 6, 5, 4, 3, 2], decoder_layers=6, decoder_learned_pos=False, decoder_normalize_before=False, decoder_output_dim=640, decoder_self_attention_heads_all_subtransformer=None, decoder_self_attention_heads_choice=[16, 8, 4, 2, 1], dropout=0.1, encoder_attention_heads=8, encoder_embed_choice=[512, 256, 128], encoder_embed_dim=640, encoder_embed_dim_subtransformer=None, encoder_embed_path=None, encoder_ffn_embed_dim=3072, encoder_ffn_embed_dim_all_subtransformer=None, encoder_ffn_embed_dim_choice=[4096, 3072, 2048, 1024], encoder_layer_num_choice=[7, 6, 5, 4, 3, 2], encoder_layers=6, encoder_learned_pos=False, encoder_normalize_before=False, encoder_self_attention_heads_all_subtransformer=None, encoder_self_attention_heads_choice=[16, 8, 4, 2, 1], get_attn=False, init_method='xavier', left_pad_source='True', left_pad_target='False', max_source_positions=1024, max_target_positions=1024, max_tokens=4096, no_token_positional_embeddings=False, qkv_dim=512, share_all_embeddings=True, share_decoder_input_output_embed=True, source_lang=None, target_lang=None, task='translation', upsample_primary=1, vocab_original_scaling=False), 'models': [TransformerSuperModel(
+), 'tgt_dict': <fairseq.data.dictionary.Dictionary object at 0x7f69cd5048>, 'src_dict': <fairseq.data.dictionary.Dictionary object at 0x7f69cd5358>, 'dFile2': <_io.TextIOWrapper name='debug_task.txt' mode='a' encoding='UTF-8'>, 'outFile': <_io.TextIOWrapper name='d-HAT_output.txt' mode='a' encoding='UTF-8'>, 'lat_start': 1618846844.6511593, 'input_lat': '350', 'build_end': 1618846827.1017737, '_model_args': Namespace(activation_dropout=0.0, activation_fn='relu', adaptive_input=False, adaptive_softmax_cutoff=None, adaptive_softmax_dropout=0, arch='transformersuper', attention_dropout=0.0, decoder_arbitrary_ende_attn_all_subtransformer=None, decoder_arbitrary_ende_attn_choice=[-1, 1, 2], decoder_attention_heads=8, decoder_embed_choice=[512, 256, 128], decoder_embed_dim=640, decoder_embed_dim_subtransformer=None, decoder_embed_path=None, decoder_ende_attention_heads_all_subtransformer=None, decoder_ende_attention_heads_choice=[16, 8, 4, 2, 1], decoder_ffn_embed_dim=3072, decoder_ffn_embed_dim_all_subtransformer=None, decoder_ffn_embed_dim_choice=[4096, 3072, 2048, 1024], decoder_input_dim=640, decoder_layer_num_choice=[7, 6, 5, 4, 3, 2], decoder_layers=6, decoder_learned_pos=False, decoder_normalize_before=False, decoder_output_dim=640, decoder_self_attention_heads_all_subtransformer=None, decoder_self_attention_heads_choice=[16, 8, 4, 2, 1], dropout=0.1, encoder_attention_heads=8, encoder_embed_choice=[512, 256, 128], encoder_embed_dim=640, encoder_embed_dim_subtransformer=None, encoder_embed_path=None, encoder_ffn_embed_dim=3072, encoder_ffn_embed_dim_all_subtransformer=None, encoder_ffn_embed_dim_choice=[4096, 3072, 2048, 1024], encoder_layer_num_choice=[7, 6, 5, 4, 3, 2], encoder_layers=6, encoder_learned_pos=False, encoder_normalize_before=False, encoder_self_attention_heads_all_subtransformer=None, encoder_self_attention_heads_choice=[16, 8, 4, 2, 1], get_attn=False, init_method='xavier', left_pad_source='True', left_pad_target='False', max_source_positions=1024, max_target_positions=1024, max_tokens=4096, no_token_positional_embeddings=False, qkv_dim=512, share_all_embeddings=True, share_decoder_input_output_embed=True, source_lang=None, target_lang=None, task='translation', upsample_primary=1, vocab_original_scaling=False), 'models': [TransformerSuperModel(
   (encoder): TransformerEncoder(
     (embed_tokens): EmbeddingSuper(32768, 640, padding_idx=1)
     (embed_positions): SinusoidalPositionalEmbedding()
@@ -250,7 +250,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (2): TransformerEncoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -259,7 +259,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (3): TransformerEncoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -277,7 +277,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (5): TransformerEncoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -292,7 +292,7 @@
     (embed_positions): SinusoidalPositionalEmbedding()
     (layers): ModuleList(
       (0): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -331,7 +331,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (3): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -344,7 +344,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (4): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -357,7 +357,7 @@
         (final_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
       )
       (5): TransformerDecoderLayer(
-        (self_attn): MultiheadAttentionSuper	num_heads:4	 qkv_dim:512
+        (self_attn): MultiheadAttentionSuper	num_heads:8	 qkv_dim:512
           (out_proj): LinearSuper(in_features=512, out_features=640, bias=True)
         )
         (self_attn_layer_norm): LayerNormSuper((640,), eps=1e-05, elementwise_affine=True)
@@ -371,103 +371,7 @@
       )
     )
   )
-)], 'dFile': <_io.TextIOWrapper name='debug.txt' mode='w' encoding='UTF-8'>, 'inference_end': 1617023444.2548077, 'alignment': None, 'hypo_str': 'Gutach : Erhöhung der Sicherheit von Fußgängern', 'hypo_tokens': tensor([32770,    43,  6463,    11,   850,    20, 32781,     2],
-       dtype=torch.int32), 'hypo': {'tokens': tensor([ 9850,  3830,    43,  6463,    11,   850,    20, 30932,  2196,     2],
-       device='cuda:0'), 'score': -0.8329848647117615, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.0929, -0.0718, -0.0696, -1.7688, -0.0671, -0.0607, -0.8989, -0.0540,
-        -0.0477, -0.1847], device='cuda:0')}, 'j': 0, 'target_str': 'Gutach : Noch mehr Sicherheit für Fußgänger', 'src_str': 'Gutach : Increased safety for pedestrians', 'target_tokens': tensor([ 9850,  3830,    43,  8549,   193,   850,    23, 30932,  1049,     2],
-       dtype=torch.int32), 'src_tokens': tensor([ 9850,  3830,    43, 24249,  8225,  1312,    18, 30489,   966,     2],
-       device='cuda:0'), 'sample_id': 0, 'i': 4, 'num_generated_tokens': 115, 'lat_end': 1617023444.0536978, 'decoder_times': 41, 'hypos': [[{'tokens': tensor([   41,    66,    45,   774,   892,  4581, 16229,  1003,    43,  1691,
-        18235,   148,    10,   384,   941,  5422, 25479,  2398,   330,    42,
-        24016, 22071,  2857,     7,  9850,  3830,   281,  8211,  1949,    37,
-         3205,    11,  4370, 17033,   330,    34, 21183, 27059,     5,     2],
-       device='cuda:0'), 'score': -1.9598485231399536, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8700, -0.7634, -0.4085, -0.0727, -0.2948, -0.6196, -0.6411, -0.2086,
-        -0.1854, -0.3813, -0.0498, -1.0571, -0.6376, -0.5509, -0.1832, -0.0250,
-        -1.3445, -0.3420, -0.4043, -0.9049, -0.0227, -0.0311, -0.0108, -0.3246,
-        -0.0065, -0.0271, -2.4452, -0.0883, -0.1603, -0.6207, -1.0710, -0.1465,
-        -0.5566, -0.0690, -0.2178, -1.1512, -0.1169, -0.1736, -0.6600, -0.0803],
-       device='cuda:0')}, {'tokens': tensor([   41,    66,    45,   774,   892,  4581, 16229,  1003,    43,  1691,
-        18235,   148,    10,   384,   941,  5422, 25479,  2398,   330,    42,
-        24016, 22071,  2857,     7,  9850,  3830,    37,  3205,    11,  4370,
-        17033,   330,    34, 21183, 27059,     7,  5462,  2364,     5,     2],
-       device='cuda:0'), 'score': -1.9653812646865845, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8700, -0.7634, -0.4085, -0.0727, -0.2948, -0.6196, -0.6411, -0.2086,
-        -0.1854, -0.3813, -0.0498, -1.0571, -0.6376, -0.5509, -0.1832, -0.0250,
-        -1.3445, -0.3420, -0.4043, -0.9049, -0.0227, -0.0311, -0.0108, -0.3246,
-        -0.0065, -0.0271, -2.1822, -1.1634, -0.1431, -0.5516, -0.0657, -0.1943,
-        -1.1345, -0.1120, -0.1717, -1.4829, -0.0651, -0.1757, -0.0834, -0.0823],
-       device='cuda:0')}, {'tokens': tensor([   41,    66,    45,   774,   892,  4581, 16229,  1003,    43,  1691,
-        18235,   148,    10,   384,   941,  5422, 25479,  2398,   330,    42,
-        24016, 22071,  2857,     7,  9850,  3830,    37,  3205,    11,  4370,
-        17033,   330,    34, 21183, 27059,    37,     7,  5462,  2364,     5,
-            2], device='cuda:0'), 'score': -2.0094096660614014, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8700, -0.7634, -0.4085, -0.0727, -0.2948, -0.6196, -0.6411, -0.2086,
-        -0.1854, -0.3813, -0.0498, -1.0571, -0.6376, -0.5509, -0.1832, -0.0250,
-        -1.3445, -0.3420, -0.4043, -0.9049, -0.0227, -0.0311, -0.0108, -0.3246,
-        -0.0065, -0.0271, -2.1822, -1.1634, -0.1431, -0.5516, -0.0657, -0.1943,
-        -1.1345, -0.1120, -0.1717, -1.4145, -0.8074, -0.0408, -0.1471, -0.0736,
-        -0.0830], device='cuda:0')}, {'tokens': tensor([   41,    66,    45,   774,   892,  4581, 16229,  1003,    43,  1691,
-        18235,   148,    10,   384,   941,  5422, 25479,  2398,   330,    42,
-        24016, 22071,  2857,     7,  9850,  3830,   281,  8211,  1949,    37,
-         3205,    11,  4370, 17033,   330,    42, 21183,    95,     5,     2],
-       device='cuda:0'), 'score': -2.0254976749420166, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8700, -0.7634, -0.4085, -0.0727, -0.2948, -0.6196, -0.6411, -0.2086,
-        -0.1854, -0.3813, -0.0498, -1.0571, -0.6376, -0.5509, -0.1832, -0.0250,
-        -1.3445, -0.3420, -0.4043, -0.9049, -0.0227, -0.0311, -0.0108, -0.3246,
-        -0.0065, -0.0271, -2.4452, -0.0883, -0.1603, -0.6207, -1.0710, -0.1465,
-        -0.5566, -0.0690, -0.2178, -1.3617, -0.2068, -0.4747, -0.6627, -0.0765],
-       device='cuda:0')}], [{'tokens': tensor([   47, 24136,   343,    10, 17033,   330,    34, 21183, 27059,  7376,
-            4,   503,    40,    54,    70,    38,  4213,  6352,  1473,    47,
-            4, 11982, 20709,   802,  6898,     5,     2], device='cuda:0'), 'score': -1.6461113691329956, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8363, -1.3238, -0.5021, -0.5461, -0.1940, -0.3823, -0.9666, -0.1287,
-        -0.1522, -0.2985, -0.0884, -0.5646, -0.5883, -0.1018, -0.9411, -0.1082,
-        -0.6546, -1.1957, -0.7741, -0.1429, -0.0757, -0.8043, -0.0114, -0.0170,
-        -0.0582, -0.3672, -0.0684], device='cuda:0')}, {'tokens': tensor([   47, 24136,   343,    10, 17033,   330,    34, 21183, 27059,  7376,
-            4,   503,    40,    54,    70,    38,  4213,  6352, 24524,    47,
-            4, 11982, 20709,   802,  6898,     5,     2], device='cuda:0'), 'score': -1.6690837144851685, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8363, -1.3238, -0.5021, -0.5461, -0.1940, -0.3823, -0.9666, -0.1287,
-        -0.1522, -0.2985, -0.0884, -0.5646, -0.5883, -0.1018, -0.9411, -0.1082,
-        -0.6546, -1.1957, -0.9815, -0.1869, -0.0721, -0.7260, -0.0113, -0.0173,
-        -0.0592, -0.3632, -0.0676], device='cuda:0')}, {'tokens': tensor([   47, 24136,   343,    10, 17033,   330,    34, 21183, 27059,  7376,
-            4,   503,    40,    54,   263,    70,    38,  4213,  6352,  1473,
-           47,     4, 11982, 20709,   802,  6898,     5,     2],
-       device='cuda:0'), 'score': -1.6949753761291504, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8363, -1.3238, -0.5021, -0.5461, -0.1940, -0.3823, -0.9666, -0.1287,
-        -0.1522, -0.2985, -0.0884, -0.5646, -0.5883, -0.1018, -1.5448, -0.0458,
-        -0.1205, -0.6500, -1.1111, -0.7832, -0.1470, -0.0778, -0.8311, -0.0115,
-        -0.0171, -0.0592, -0.3744, -0.0687], device='cuda:0')}, {'tokens': tensor([   47, 24136,   343,    10, 17033,   330,    34, 21183, 27059,  7376,
-            4,   503,    40,    54,    70,    38,  4213,  6352,  1473,    47,
-            4,  3537, 20709,   802,  6898,     5,     2], device='cuda:0'), 'score': -1.706868290901184, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.8363, -1.3238, -0.5021, -0.5461, -0.1940, -0.3823, -0.9666, -0.1287,
-        -0.1522, -0.2985, -0.0884, -0.5646, -0.5883, -0.1018, -0.9411, -0.1082,
-        -0.6546, -1.1957, -0.7741, -0.1429, -0.0757, -1.2538, -0.0154, -0.0152,
-        -0.0759, -0.3361, -0.0689], device='cuda:0')}], [{'tokens': tensor([ 9551, 22350,   928, 10617,     4,    10,    83,  3269,  5320,  1852,
-           43,   403, 23613,    75,   750,   122,    49, 11611, 16867,  3219,
-           89,     2], device='cuda:0'), 'score': -2.0982141494750977, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.2587, -2.2302, -0.2507, -0.5369, -1.1762, -0.4554, -0.7143, -1.1995,
-        -0.4386, -0.2887, -0.2096, -1.1225, -0.4075, -0.0978, -0.5770, -0.6888,
-        -0.1598, -1.4805, -0.7952, -0.1557, -0.0845, -0.0780], device='cuda:0')}, {'tokens': tensor([ 9551,  8762,   928, 10617,     4,    10,    83,  3269,  5320,  1852,
-           43,   403, 23613,    75,   750,   122,    49, 11611, 16867,  3219,
-           89,     2], device='cuda:0'), 'score': -2.109912633895874, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.2587, -1.0483, -1.2274, -0.6538, -1.3189, -0.4683, -0.7038, -1.2028,
-        -0.4414, -0.2762, -0.2184, -1.1200, -0.4013, -0.0958, -0.5931, -0.6928,
-        -0.1548, -1.5107, -0.7808, -0.1559, -0.0797, -0.0782], device='cuda:0')}, {'tokens': tensor([ 9551, 22350,   928, 10617,     4,    10,    83,  3269,  5320,  1852,
-           43,   403, 23613,    75,   750,   122,    49, 17154,  2541,  3219,
-           89,     2], device='cuda:0'), 'score': -2.2008378505706787, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.2587, -2.2302, -0.2507, -0.5369, -1.1762, -0.4554, -0.7143, -1.1995,
-        -0.4386, -0.2887, -0.2096, -1.1225, -0.4075, -0.0978, -0.5770, -0.6888,
-        -0.1598, -1.8915, -1.0085, -0.1754, -0.0935, -0.0807], device='cuda:0')}, {'tokens': tensor([ 9551,  8762,   928, 10617,     4,    10,    83,  3269,  5320,  1852,
-           43,   403, 23613,    75,   750,   122,    49, 17154,  2541,  3219,
-           89,     2], device='cuda:0'), 'score': -2.2075395584106445, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.2587, -1.0483, -1.2274, -0.6538, -1.3189, -0.4683, -0.7038, -1.2028,
-        -0.4414, -0.2762, -0.2184, -1.1200, -0.4013, -0.0958, -0.5931, -0.6928,
-        -0.1548, -1.8728, -1.0112, -0.1771, -0.0869, -0.0809], device='cuda:0')}], [{'tokens': tensor([25186,    87,    11,  5020, 11645,  9850,  4762,    33,   120,   456,
-           38,  4737,  2044,  1690,     5,     2], device='cuda:0'), 'score': -0.9700056314468384, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.1867, -0.4367, -0.8005, -0.0326, -0.1403, -0.1659, -0.4469, -1.0285,
-        -0.0857, -0.1736, -0.9262, -0.3427, -0.0333, -0.1834, -0.0650, -0.0717],
-       device='cuda:0')}, {'tokens': tensor([25186,    87,    11,  5020, 11645,  9850,  4762,   120,   456,  1485,
-        12185,     5,     2], device='cuda:0'), 'score': -1.1808146238327026, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.1867, -0.4367, -0.8005, -0.0326, -0.1403, -0.1659, -0.4469, -1.8799,
-        -0.1667, -0.9411, -0.1678, -0.0679, -0.0695], device='cuda:0')}, {'tokens': tensor([25186,    87,    11,  5020, 11645,  9850,  4762,    33,   120,   456,
-         1485, 12185,     5,     2], device='cuda:0'), 'score': -1.2748459577560425, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.1867, -0.4367, -0.8005, -0.0326, -0.1403, -0.1659, -0.4469, -1.0285,
-        -0.0857, -0.1736, -1.7443, -0.8244, -0.0741, -0.0705], device='cuda:0')}, {'tokens': tensor([25186,    87,    11,  5020, 11645,  9850,  4762,    33,   120,   456,
-           38,  4737,  2044, 12795,     5,     2], device='cuda:0'), 'score': -1.4416368007659912, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.1867, -0.4367, -0.8005, -0.0326, -0.1403, -0.1659, -0.4469, -1.0285,
-        -0.0857, -0.1736, -0.9262, -0.3427, -0.0333, -2.6663, -0.0718, -0.0713],
-       device='cuda:0')}], [{'tokens': tensor([ 9850,  3830,    43,  6463,    11,   850,    20, 30932,  2196,     2],
-       device='cuda:0'), 'score': -0.8329848647117615, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.0929, -0.0718, -0.0696, -1.7688, -0.0671, -0.0607, -0.8989, -0.0540,
-        -0.0477, -0.1847], device='cuda:0')}, {'tokens': tensor([ 9850,  3830,    43,  6611,   850,    23, 30932,  1049,     2],
-       device='cuda:0'), 'score': -0.8370764255523682, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.0929, -0.0718, -0.0696, -2.1927, -0.0293, -0.4169, -0.0576, -0.0163,
-        -0.1812], device='cuda:0')}, {'tokens': tensor([ 9850,  3830,    43,  6463,    11,   850,    23, 30932,  1049,     2],
-       device='cuda:0'), 'score': -0.8470004796981812, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.0929, -0.0718, -0.0696, -1.7688, -0.0671, -0.0607, -1.0322, -0.0529,
-        -0.0151, -0.1408], device='cuda:0')}, {'tokens': tensor([ 9850,  3830,    43, 30583,   174,   850,    23, 30932,  1049,     2],
-       device='cuda:0'), 'score': -0.97724449634552, 'attention': None, 'alignment': None, 'positional_scores': tensor([-0.0929, -0.0718, -0.0696, -2.4823, -0.2945, -0.0505, -0.5899, -0.0540,
-        -0.0149, -0.1701], device='cuda:0')}]], 'lat_start': 1617023442.995627}
+)]}
 
 
 

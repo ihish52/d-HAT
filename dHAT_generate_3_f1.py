@@ -8,37 +8,47 @@ Translate pre-processed data with a trained model.
 """
 
 import torch
+
 from fairseq import bleu, checkpoint_utils, options, progress_bar, tasks, utils
 from fairseq.meters import StopwatchMeter, TimeMeter
 import sys
 import pdb
 import numpy as np
+
+########################################################
 from time import time
 
-#-->List of SubTransformer configurations for selected HAT operating points.
-model2000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 4, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 4, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, 1, -1]}}
+model1500args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1, -1]}}
 
 model1250args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 5, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [4, 8, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1]}}
 
 model1000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}
 
-model900args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 3, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}
+model750args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [4, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}
 
-model700args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [1, 1]}}
+model500args = {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}
 
 model350args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}
 
-modelconfigs = {'350':model350args, '700':model700args, '900':model900args, '1000':model1000args, '1250':model1250args, '2000':model2000args}
+build_start = time()
+build_end = time()
+inference_start = time()
+inference_end = time()
+lat_start = time()
+lat_end = time()
+
+
+modelconfigs = {'350':model350args, '500':model500args, '750':model750args, '1000':model1000args, '1250':model1250args, '1500':model1500args}
+
 modelargs = {}
-outFile = open("d-HAT_output.txt", "w").close()
+
+#def set_args(args):
     
+    
+##########################################################
 
 def main(args):
 
-    loop_count = 0
-
-    #-->Start timing for inital loading of SuperTransformer weights
-    build_start = time()
 
     assert args.path is not None, '--path required for generation!'
     assert not args.sampling or args.nbest == args.beam, \
@@ -82,40 +92,48 @@ def main(args):
 
     torch.manual_seed(args.seed)
 
-    build_end = time()
+############################
 
+    outFile = open("d-HAT_output.txt", "w").close() 
+
+ ##LOOP TWICE
     while True:
-        #-->Enter required latency constraint.
-        print ('Please enter a latency constraint/operating point to sample \nfrom the SuperTransformer design space (350, 700, 900, 1000, 1250, 2000):', file = sys.stderr)
-        input_lat = input()
-        args.lat_config = input_lat
 
-        #-->Start timing for sampling a new SubTransformer configuration.
-        lat_start = time()
+        outFile = open("d-HAT_output.txt", "a")
+        print ('Please enter a latency constraint (350, 500, 750, 1000, 1250, 1500):', file = sys.stderr)
+        input_lat = input()
+
+        args.lat_config = input_lat
 
         print ("\n\nLatency constraint:", args.lat_config)
         print ("\n")
+        outFile.write("Latency constraint: {}\n".format(args.lat_config))
 
-        outFile = open("d-HAT_output.txt", "a")
-        outFile.write("\nLatency constraint: {}\n\n".format(args.lat_config))
+        ###################################
+        build_start = time()
+        #########################################
 
-
-        # Load dataset splits
+        ###############################
+        # Load dataset splits AGAIN
         task = tasks.setup_task(args)
         task.load_dataset(args.gen_subset)
+        #################################
 
-        #-->Print loop info to debug file.
+########################################################
         with open("debug_task.txt", "a") as dFile2:
             print ("Start of loop X", file=dFile2)
             print ("\n\n\n", file=dFile2)
 
+########################################################
+
+###################################
         # Set dictionaries
         try:
             src_dict = getattr(task, 'source_dictionary', None)
         except NotImplementedError:
             src_dict = None
         tgt_dict = task.target_dictionary
-
+#####################################
 
         # Optimize ensemble for generation
         for model in models:
@@ -132,7 +150,13 @@ def main(args):
             
             
             print(f"| Latency: {args.lat_config} ms", file = sys.stderr)
-
+            
+           
+            
+            #print(f"| Configs: {args}", file = sys.stderr)
+            
+            
+            ##################################edited####################################
             
             model.make_generation_fast_(
                 beamable_mm_beam_size=None if args.no_beamable_mm else args.beam,
@@ -166,11 +190,10 @@ def main(args):
             num_workers=args.num_workers,
         ).next_epoch_itr(shuffle=False)
 
-
-        lat_end = time()
-
-        #-->Start timing translation output for input sentences.
+        ###############################    
+        build_end = time()
         inference_start = time()
+#########################################
 
         # Initialize generator
         gen_timer = StopwatchMeter()
@@ -192,22 +215,35 @@ def main(args):
                 if args.prefix_size > 0:
                     prefix_tokens = sample['target'][:, :args.prefix_size]
 
-                #-->Print variable info to debug files.
+##########################################################
+                #print ("\n\n\n GLOBAL VARIABLES \n\n\n", file=sys.stderr)
+                #print (globals(), file=sys.stderr)
+                #print ("\n\n\n LOCAL VARIABLES \n\n\n", file=sys.stderr)
+                #print (locals(), file=sys.stderr)
+                #print ("\n\n\n", file=sys.stderr)
                 with open("debug.txt", "w") as dFile:
                     print ("\n\n\n GLOBAL VARIABLES \n\n\n", file=dFile)
                     print (globals(), file = dFile)
                     print ("\n\n\n LOCAL VARIABLES \n\n\n", file=dFile)
                     print (locals(), file = dFile)
                     print ("\n\n\n", file=dFile)
+
+##########################################################
+
+    ########################################################
                 with open("debug_task.txt", "a") as dFile2:
                     print ("Inference Step X", file=dFile2)
                     print (len(tgt_dict), file = dFile2)
                     print ("\n\n\n", file=dFile2)
 
+    ########################################################
+
                 gen_timer.start()
-                
+                ###
+                lat_start = time()
                 hypos, decoder_times = task.inference_step(generator, models, sample, prefix_tokens)
-                
+                ###
+                lat_end = time()
                 input_len_all.append(np.mean(sample['net_input']['src_lengths'].cpu().numpy()))
 
                 print(decoder_times)
@@ -281,39 +317,33 @@ def main(args):
                                     ' '.join(map(lambda x: str(utils.item(x)), alignment))
                                 ))
 
-                        #-->Printing to d-HAT output file.
-                        outFile.write("Input[{}] (English): {}\n".format(sample_id,src_str))
-                        outFile.write("Output[{}] (German): {}\n".format(sample_id,hypo_str))
-                        outFile.write("Reference[{}]      : {}\n".format(sample_id,target_str))
-                        outFile.write("--------------------------------------------------\n\n")
+                        #printing to d-HAT output file
+                        outFile.write("Input (English): {}".format(src_str))
+                        outFile.write("Output (German): {}".format(hypo_str))
+                        outFile.write("Reference: {}".format(target_str))
 
                 wps_meter.update(num_generated_tokens)
                 t.log({'wps': round(wps_meter.avg)})
                 num_sentences += sample['nsentences']
-                
 
+
+    ####################################
         inference_end = time()
+        print(f"\n| **Time to set up model and sample: {build_end - build_start}**")
+        print(f"| **Time for full inference: {inference_end - inference_start}**")
+        print(f"| **Latency test time: {lat_end - lat_start}**\n")
+        ####
+        #outFile.write("| **Time to set up model and sample: {build_end - build_start}**")
+        #outFile.write("| **Time for full inference: {inference_end - inference_start}**")
+        #outFile.write("| **Latency test time: {lat_end - lat_start}**")
+        #tgt_dict = tgt_dict_backup
+        print ("Translation complete.\nFile can be found at: d-HAT/downloaded_models/exp\n", file=sys.stderr)
+        #print (args)
+        
 
-        #-->Printing latency information for the HAT model.
-        if loop_count == 0:
-            print(f"\n| **Time to load SuperTransformer weights: {build_end - build_start}**\n")
-            print(f"| **Time to load SuperTransformer weights: {build_end - build_start}**\n", file=sys.stderr)
-            outFile.write("| **Time to load SuperTransformer weights: {}**\n".format(build_end-build_start))
-        print(f"\n| **Time to sample SubTransformer configuration: {lat_end - lat_start}**\n")
-        print(f"\n| **Time to generate translations: {inference_end - inference_start}**\n")
+    ########################################################
 
-        print(f"| **Time to sample SubTransformer configuration: {lat_end - lat_start}**\n", file=sys.stderr)
-        print(f"| **Time to generate translations: {inference_end - inference_start}**\n", file=sys.stderr)
-
-        outFile.write("| **Time to sample SubTransformer configuration: {}**\n".format(lat_end-lat_start))
-        outFile.write("| **Time to generate translations: {}**\n".format(inference_end - inference_start))
-        outFile.write("--------------------------------------------------\n\n")
-        outFile.close()
-
-        print ("Translation complete. See file: d-HAT/d-HAT_output.txt\n", file=sys.stderr)
-
-        loop_count += 1
-
+    ############################edited###########################
 
 def cli_main():
     parser = options.get_generation_parser()
@@ -334,8 +364,9 @@ def cli_main():
 
     parser.add_argument('--decoder-arbitrary-ende-attn-all-subtransformer', nargs='+', default=None, type=int)
 
-    #-->Set default latency config
+    #set default latency config
     parser.add_argument('--lat-config', default = '1000', help = 'default config to use from model param dictionary')
+    ###########################
     
     args = options.parse_args_and_arch(parser)
 
