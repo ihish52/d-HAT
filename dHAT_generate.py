@@ -8,41 +8,37 @@ Translate pre-processed data with a trained model.
 """
 
 import torch
-
 from fairseq import bleu, checkpoint_utils, options, progress_bar, tasks, utils
 from fairseq.meters import StopwatchMeter, TimeMeter
 import sys
 import pdb
 import numpy as np
-
-########################################################
 from time import time
 
-model1500args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1, -1]}}
+#-->List of SubTransformer configurations for selected HAT operating points.
+model2000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 6, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 4, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 4, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, 1, -1]}}
 
 model1250args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 5, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [4, 8, 8, 4, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [-1, 1, 1, 1, -1]}}
 
 model1000args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 4, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 4, 'decoder_ffn_embed_dim': [3072, 3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8, 4], 'decoder_ende_attention_heads': [8, 8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1, -1]}}
 
-model750args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [4, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}
+model900args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 3, 'decoder_ffn_embed_dim': [3072, 3072, 3072], 'decoder_self_attention_heads': [8, 8, 8], 'decoder_ende_attention_heads': [8, 8, 8], 'decoder_arbitrary_ende_attn': [1, 1, 1]}}
 
-model500args = {'encoder': {'encoder_embed_dim': 640, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [1024, 2048, 2048, 2048, 2048, 2048], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [-1, -1]}}
+model700args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [3072, 3072, 3072, 2048, 3072, 3072], 'encoder_self_attention_heads': [8, 8, 8, 8, 8, 4]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 2, 'decoder_ffn_embed_dim': [3072, 3072], 'decoder_self_attention_heads': [8, 8], 'decoder_ende_attention_heads': [8, 8], 'decoder_arbitrary_ende_attn': [1, 1]}}
 
 model350args = {'encoder': {'encoder_embed_dim': 512, 'encoder_layer_num': 6, 'encoder_ffn_embed_dim': [2048, 3072, 3072, 3072, 3072, 2048], 'encoder_self_attention_heads': [8, 8, 4, 8, 8, 8]}, 'decoder': {'decoder_embed_dim': 512, 'decoder_layer_num': 1, 'decoder_ffn_embed_dim': [3072], 'decoder_self_attention_heads': [8], 'decoder_ende_attention_heads': [8], 'decoder_arbitrary_ende_attn': [-1]}}
 
-build_start = time()
-build_end = time()
-sample_start = time()
-sample_end = time()
-
-modelconfigs = {'350':model350args, '500':model500args, '750':model750args, '1000':model1000args, '1250':model1250args, '1500':model1500args}
-
+modelconfigs = {'350':model350args, '700':model700args, '900':model900args, '1000':model1000args, '1250':model1250args, '2000':model2000args}
 modelargs = {}
-##########################################################
+outFile = open("d-HAT_output.txt", "w").close()
+    
 
 def main(args):
 
+    loop_count = 0
 
+    #-->Start timing for inital loading of SuperTransformer weights
+    build_start = time()
 
     assert args.path is not None, '--path required for generation!'
     assert not args.sampling or args.nbest == args.beam, \
@@ -51,43 +47,31 @@ def main(args):
         '--replace-unk requires a raw text dataset (--raw-text)'
 
     utils.import_user_module(args)
-    
+
     if args.max_tokens is None and args.max_sentences is None:
         args.max_tokens = 12000
-    print(args)
-    
+    #print(args.lat_config)
+
     use_cuda = torch.cuda.is_available() and not args.cpu
     
     # when running on CPU, use fp32 as default
     if not use_cuda:
         args.fp16 = False
- 
 
-###################################
-    build_start = time()
-    ######################################### 
-    
     
     # Load dataset splits
     task = tasks.setup_task(args)
-    
-    #######################
-    task_copy = task
-    #######################
-    
     task.load_dataset(args.gen_subset)
-
     
 
-    # Set dictionaries
+    '''# Set dictionaries - tried in loop
     try:
         src_dict = getattr(task, 'source_dictionary', None)
     except NotImplementedError:
         src_dict = None
-    tgt_dict = task.target_dictionary
-    
-    
-    
+    tgt_dict = task.target_dictionary'''
+
+
     # Load ensemble
     print('| loading model(s) from {}'.format(args.path))
     models, _model_args = checkpoint_utils.load_model_ensemble(
@@ -95,28 +79,43 @@ def main(args):
         arg_overrides=eval(args.model_overrides),
         task=task,
     )
-    
-    ##################################
-    models_copy = models
-    _model_args_copy = _model_args
-    ###################################
-    
-    torch.manual_seed(args.seed)
-    
-    ####################################
-    build_end = time()
-    #print(f"\n| **Time to set up: {build_end - build_start}**\n", file=sys.stderr)
-    ######################
-    
-    while True:
 
-        print(f"\nEnter model latency [choices -> 350, 500, 750, 1000, 1250, 1500 (ms)]: ", file = sys.stderr)
-        lat = input()
-        modelargs = modelconfigs[lat]
-        ################
-        models = models_copy
-        _model_args = _model_args_copy
-        ################
+    torch.manual_seed(args.seed)
+
+    build_end = time()
+
+    while True:
+        #-->Enter required latency constraint.
+        print ('Please enter a latency constraint/operating point to sample \nfrom the SuperTransformer design space (350, 700, 900, 1000, 1250, 2000):', file = sys.stderr)
+        input_lat = input()
+        args.lat_config = input_lat
+
+        #-->Start timing for sampling a new SubTransformer configuration.
+        lat_start = time()
+
+        print ("\n\nLatency constraint:", args.lat_config)
+        print ("\n")
+
+        outFile = open("d-HAT_output.txt", "a")
+        outFile.write("\nLatency constraint: {}\n\n".format(args.lat_config))
+
+
+        # Load dataset splits
+        task = tasks.setup_task(args)
+        task.load_dataset(args.gen_subset)
+
+        #-->Print loop info to debug file.
+        with open("debug_task.txt", "a") as dFile2:
+            print ("Start of loop X", file=dFile2)
+            print ("\n\n\n", file=dFile2)
+
+        # Set dictionaries
+        try:
+            src_dict = getattr(task, 'source_dictionary', None)
+        except NotImplementedError:
+            src_dict = None
+        tgt_dict = task.target_dictionary
+
 
         # Optimize ensemble for generation
         for model in models:
@@ -126,26 +125,14 @@ def main(args):
             config = utils.get_subtransformer_config(args)
             
             
-            ####################################
             
             
+            model.set_sample_config(modelconfigs[args.lat_config])
+            
+            
+            
+            print(f"| Latency: {args.lat_config} ms", file = sys.stderr)
 
-    ############################edited###########################
-        
-            sample_start = time()
-            
-            model.set_sample_config(modelargs)
-            
-            sample_end = time()
-            
-            print(f"| Latency: {lat} ms", file = sys.stderr)
-            
-            print(f"\n| **Time to sample SubT from SuperT design space: {sample_end - sample_start}**\n", file=sys.stderr)
-            
-            #print(f"| Configs: {args}", file = sys.stderr)
-            
-            
-            ##################################edited####################################
             
             model.make_generation_fast_(
                 beamable_mm_beam_size=None if args.no_beamable_mm else args.beam,
@@ -156,11 +143,12 @@ def main(args):
             if use_cuda:
                 model.cuda()
             #print(model, file=sys.stderr)
-            print(args.path, file=sys.stderr)
+            #print(args.path, file=sys.stderr)
 
         # Load alignment dictionary for unknown word replacement
         # (None if no unknown word replacement, empty if no path to align dictionary)
         align_dict = utils.load_align_dict(args.replace_unk)
+
 
         # Load dataset (possibly sharded)
         itr = task.get_batch_iterator(
@@ -177,6 +165,12 @@ def main(args):
             shard_id=args.shard_id,
             num_workers=args.num_workers,
         ).next_epoch_itr(shuffle=False)
+
+
+        lat_end = time()
+
+        #-->Start timing translation output for input sentences.
+        inference_start = time()
 
         # Initialize generator
         gen_timer = StopwatchMeter()
@@ -198,8 +192,22 @@ def main(args):
                 if args.prefix_size > 0:
                     prefix_tokens = sample['target'][:, :args.prefix_size]
 
+                #-->Print variable info to debug files.
+                with open("debug.txt", "w") as dFile:
+                    print ("\n\n\n GLOBAL VARIABLES \n\n\n", file=dFile)
+                    print (globals(), file = dFile)
+                    print ("\n\n\n LOCAL VARIABLES \n\n\n", file=dFile)
+                    print (locals(), file = dFile)
+                    print ("\n\n\n", file=dFile)
+                with open("debug_task.txt", "a") as dFile2:
+                    print ("Inference Step X", file=dFile2)
+                    print (len(tgt_dict), file = dFile2)
+                    print ("\n\n\n", file=dFile2)
+
                 gen_timer.start()
+                
                 hypos, decoder_times = task.inference_step(generator, models, sample, prefix_tokens)
+                
                 input_len_all.append(np.mean(sample['net_input']['src_lengths'].cpu().numpy()))
 
                 print(decoder_times)
@@ -207,14 +215,19 @@ def main(args):
                 num_generated_tokens = sum(len(h[0]['tokens']) for h in hypos)
                 gen_timer.stop(num_generated_tokens)
 
+                
+
                 for i, sample_id in enumerate(sample['id'].tolist()):
                     has_target = sample['target'] is not None
+
 
                     # Remove padding
                     src_tokens = utils.strip_pad(sample['net_input']['src_tokens'][i, :], tgt_dict.pad())
                     target_tokens = None
                     if has_target:
                         target_tokens = utils.strip_pad(sample['target'][i, :], tgt_dict.pad()).int().cpu()
+
+                    
 
                     # Either retrieve the original sentences or regenerate them from tokens.
                     if align_dict is not None:
@@ -228,6 +241,8 @@ def main(args):
                         if has_target:
                             target_str = tgt_dict.string(target_tokens, args.remove_bpe, escape_unk=True)
 
+                    
+
                     if not args.quiet:
                         if src_dict is not None:
                             print('S-{}\t{}'.format(sample_id, src_str))
@@ -236,6 +251,8 @@ def main(args):
 
                     # Process top predictions
                     for j, hypo in enumerate(hypos[i][:args.nbest]):
+
+
                         hypo_tokens, hypo_str, alignment = utils.post_process_prediction(
                             hypo_tokens=hypo['tokens'].int().cpu(),
                             src_str=src_str,
@@ -244,6 +261,9 @@ def main(args):
                             tgt_dict=tgt_dict,
                             remove_bpe=args.remove_bpe,
                         )
+
+                        
+
 
                         if not args.quiet:
                             print('H-{}\t{}\t{}'.format(sample_id, hypo['score'], hypo_str))
@@ -261,9 +281,38 @@ def main(args):
                                     ' '.join(map(lambda x: str(utils.item(x)), alignment))
                                 ))
 
+                        #-->Printing to d-HAT output file.
+                        outFile.write("Input[{}] (English): {}\n".format(sample_id,src_str))
+                        outFile.write("Output[{}] (German): {}\n".format(sample_id,hypo_str))
+                        outFile.write("Reference[{}]      : {}\n".format(sample_id,target_str))
+                        outFile.write("--------------------------------------------------\n\n")
+
                 wps_meter.update(num_generated_tokens)
                 t.log({'wps': round(wps_meter.avg)})
                 num_sentences += sample['nsentences']
+                
+
+        inference_end = time()
+
+        #-->Printing latency information for the HAT model.
+        if loop_count == 0:
+            print(f"\n| **Time to load SuperTransformer weights: {build_end - build_start}**\n")
+            print(f"\n| **Time to load SuperTransformer weights: {build_end - build_start}**", file=sys.stderr)
+            outFile.write("| **Time to load SuperTransformer weights: {}**\n".format(build_end-build_start))
+        print(f"\n| **Time to sample SubTransformer configuration: {lat_end - lat_start}**\n")
+        print(f"\n| **Time to generate translations: {inference_end - inference_start}**\n")
+
+        print(f"| **Time to sample SubTransformer configuration: {lat_end - lat_start}**", file=sys.stderr)
+        print(f"| **Time to generate translations: {inference_end - inference_start}**\n", file=sys.stderr)
+
+        outFile.write("| **Time to sample SubTransformer configuration: {}**\n".format(lat_end-lat_start))
+        outFile.write("| **Time to generate translations: {}**\n".format(inference_end - inference_start))
+        outFile.write("--------------------------------------------------\n\n")
+        outFile.close()
+
+        print ("| **Translation complete. See file: d-HAT/d-HAT_output.txt**\n", file=sys.stderr)
+
+        loop_count += 1
 
 
 def cli_main():
@@ -285,9 +334,8 @@ def cli_main():
 
     parser.add_argument('--decoder-arbitrary-ende-attn-all-subtransformer', nargs='+', default=None, type=int)
 
-    #set default latency config
+    #-->Set default latency config
     parser.add_argument('--lat-config', default = '1000', help = 'default config to use from model param dictionary')
-    ###########################
     
     args = options.parse_args_and_arch(parser)
 
