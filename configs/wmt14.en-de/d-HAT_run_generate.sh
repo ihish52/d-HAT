@@ -1,6 +1,6 @@
 checkpoints_path=$1
 lat=${2:-1000}
-configs=${3:-"configs/wmt14.en-de/subtransformer/wmt14ende_jetson@1000ms.yml"}
+configs=${3:-"configs/wmt14.en-de/subtransformer/wmt14ende_gpu_jetson_search0@1000ms.yml"}
 metrics=${4:-"normal"}
 gpu=${5:-0}
 subset=${6:-"test"}

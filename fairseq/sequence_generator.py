@@ -292,6 +292,7 @@ class SequenceGenerator(object):
             with open("debug_task.txt", "a") as dFile2:
                 print ("x step in max_len + 1 looping", file=dFile2)
                 print (step, file=dFile2)
+                
                 print ("num sent:", file=dFile2)
                 print (num_remaining_sent, file=dFile2)
 
@@ -396,9 +397,11 @@ class SequenceGenerator(object):
                 #print ("\n\n\n LOCAL VARIABLES \n\n\n", file=dFile2)
                 #print (locals(), file = dFile2)
                 #print ("\n\n\n", file=dFile2)
+                print ("CHECK HERE", file=dFile2)
                 #print ("\n\n\n", file=dFile2)
                 print (lprobs.size(), file=dFile2)
                 print (max_len, file=dFile2)
+                print (step, file=dFile2)
                 print (bsz, file=dFile2)
                 print (self.vocab_size, file=dFile2)
                 #print (cand output sizes:)
