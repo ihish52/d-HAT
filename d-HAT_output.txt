@@ -1,225 +1,65 @@
 
-Latency constraint: 1250
-
-Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Nähe der Gutachthalle befinden sich neben der Fußgängerzone auch die Gutachthalle liegenden Halle 33.
-Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
---------------------------------------------------
-
-Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; , erklärte Eckert gestern in Halle der Verkehr .
-Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
---------------------------------------------------
-
-Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehlerkorrekturen werden absichtlich falsch gesetzt ?
-Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
---------------------------------------------------
-
-Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Gestern hat die Gutachter eine klare Antwort gegeben .
-Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
---------------------------------------------------
-
-Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit für Fußgänger
-Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
---------------------------------------------------
-
-| **Time to load SuperTransformer weights: 15.837908506393433**
-| **Time to sample SubTransformer configuration: 8.488661527633667**
-| **Time to generate translations: 5.476616859436035**
---------------------------------------------------
-
-
-Latency constraint: 350
-
-Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Nähe von Gutachse B befindet sich die Fußgängerzone von Gutachse B 33.
-Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
---------------------------------------------------
-
-Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; , erklärt Eckert wurde gestern die Verkehrslampe der Stadtverkehrsstraße &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; , erklärte Eckert &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahn wurde gestern die Straßenbahnlinie &quot; , erklärte Eckert am Ende der Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; , erklärte Eckert am Ende der Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; , erklärte Eckert am Ende der Straßenbahnlinie &quot; , erklärte Eckert wurde gestern die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; , erklärte Eckert wurde gestern die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; , erklärte Eckert &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; , erklärte Eckert wurde gestern die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie &quot; Die Straßenbahnlinie wurde gestern die
-Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
---------------------------------------------------
-
-Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehler gibt es absichtlich einen anderen Fehler zu schließen ?
-Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
---------------------------------------------------
-
-Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Der Bürgermeister hat gestern eine klare Antwort gegeben .
-Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
---------------------------------------------------
-
-Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit von Fußgängern : Mehr Sicherheit von Fußgängern
-Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
---------------------------------------------------
-
-| **Time to sample SubTransformer configuration: 0.4464707374572754**
-| **Time to generate translations: 6.711921215057373**
---------------------------------------------------
-
-
-Latency constraint: 2000
-
-Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Gutachthalle befinden sich neben der Fußgängerzone auch neue Parkhäuser .
-Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
---------------------------------------------------
-
-Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; Gestern wurde in der Halle die Ampel installiert .
-Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
---------------------------------------------------
-
-Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehlerkorrekturen sollen so dumme oder gar nicht mehr schließen : Ein anderer Fehler ?
-Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
---------------------------------------------------
-
-Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Gestern hat der Bürgermeister eine klare Antwort gegeben .
-Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
---------------------------------------------------
-
-Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit für Fußgänger
-Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
---------------------------------------------------
-
-| **Time to sample SubTransformer configuration: 0.46065711975097656**
-| **Time to generate translations: 4.629190921783447**
---------------------------------------------------
-
-
 Latency constraint: 700
 
 Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Fußgängerzone befinden sich neben dem Gutachter Rathaus noch ein neues Parkhaus .
+Output[1] (German): die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die
 Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
 --------------------------------------------------
 
 Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; , erklärte Eckert , dass gestern die Straßenverkehrslampen installiert wurden .
+Output[4] (German): die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die
 Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
 --------------------------------------------------
 
 Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehler setzen sich absichtlich ein , um einen anderen Fehler zu schließen ?
+Output[2] (German): die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die
 Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
 --------------------------------------------------
 
 Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Der Bürgermeister hat gestern eine klare Antwort gegeben .
+Output[3] (German): die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die
 Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
 --------------------------------------------------
 
 Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit von Fußgängern
+Output[0] (German): die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die die
 Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
 --------------------------------------------------
 
-| **Time to sample SubTransformer configuration: 0.4565291404724121**
-| **Time to generate translations: 2.8145954608917236**
+| **Time to load SuperTransformer weights: 16.16737699508667**
+| **Time to sample SubTransformer configuration: 10.377130508422852**
+| **Time to generate translations: 14.041564702987671**
 --------------------------------------------------
 
 
-Latency constraint: 900
+Latency constraint: 1250
 
 Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Fußgängerzone von Gutach befinden sich neben dem Rathaus auch noch ein neues Parkhaus .
+Output[1] (German): PolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitik
 Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
 --------------------------------------------------
 
 Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; Die Stadt wurde gestern durch die Ampel installiert .
+Output[4] (German): PolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitik
 Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
 --------------------------------------------------
 
 Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehler gesetzt ?
+Output[2] (German): PolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitik
 Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
 --------------------------------------------------
 
 Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Der Bürgermeister hat gestern eine klare Antwort gegeben .
+Output[3] (German): PolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitik
 Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
 --------------------------------------------------
 
 Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit für Fußgänger
+Output[0] (German): PolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitikPolitik
 Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
 --------------------------------------------------
 
-| **Time to sample SubTransformer configuration: 0.44681382179260254**
-| **Time to generate translations: 3.002129316329956**
---------------------------------------------------
-
-
-Latency constraint: 1000
-
-Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Gutachter Fußgängerzone befinden sich neben dem Gutachter Rathaus noch keine neuen Parkhäuser .
-Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
---------------------------------------------------
-
-Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; Gestern wurde in der Halle eine Verkehrslampe installiert .
-Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
---------------------------------------------------
-
-Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehlerkorrekturen setzen : Ein anderer Fehler setzt absichtlich ein oder ein anderes Schließen von einem anderen nur ein anderes Schließen eines Fehlers ab ?
-Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
---------------------------------------------------
-
-Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Gestern hat die Gutachter eine klare Antwort gegeben .
-Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
---------------------------------------------------
-
-Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit für Fußgänger
-Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
---------------------------------------------------
-
-| **Time to sample SubTransformer configuration: 0.4550473690032959**
-| **Time to generate translations: 4.333433628082275**
---------------------------------------------------
-
-
-Latency constraint: 900
-
-Input[1] (English): They are not even 100 metres apart : On Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .
-Output[1] (German): In der Fußgängerzone von Gutach befinden sich neben dem Rathaus auch noch ein neues Parkhaus .
-Reference[1]      : Sie stehen keine 100 Meter voneinander entfernt : Am Dienstag ist in Gutach die neue B 33-Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .
---------------------------------------------------
-
-Input[4] (English): &quot; At the time , the Town Hall traffic lights were installed because this was a school route , &quot; explained Eckert yesterday .
-Output[4] (German): &quot; Die Stadt wurde gestern durch die Ampel installiert .
-Reference[4]      : &quot; Die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &quot; , erläuterte Eckert gestern .
---------------------------------------------------
-
-Input[2] (English): Two sets of lights so close to one another : intentional or just a silly error ?
-Output[2] (German): Zwei Fehler gesetzt ?
-Reference[2]      : Zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?
---------------------------------------------------
-
-Input[3] (English): Yesterday , Gutacht &apos;s Mayor gave a clear answer to this question .
-Output[3] (German): Der Bürgermeister hat gestern eine klare Antwort gegeben .
-Reference[3]      : Diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .
---------------------------------------------------
-
-Input[0] (English): Gutach : Increased safety for pedestrians
-Output[0] (German): Mehr Sicherheit für Fußgänger
-Reference[0]      : Gutach : Noch mehr Sicherheit für Fußgänger
---------------------------------------------------
-
-| **Time to sample SubTransformer configuration: 0.45061469078063965**
-| **Time to generate translations: 2.94579815864563**
+| **Time to sample SubTransformer configuration: 0.508812665939331**
+| **Time to generate translations: 21.43215775489807**
 --------------------------------------------------
 
